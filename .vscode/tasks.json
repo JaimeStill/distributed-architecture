@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-app",
+            "command": "dotnet",
+            "type": "process",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/src/app-server/"
+            },
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ]
+        },
+        {
+            "label": "watch-server",
+            "command": "dotnet",
+            "type": "shell",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/src/app-server/App.Web/"
+            },
+            "args": [
+                "watch",
+                "run"
+            ],
+            "presentation": {
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "seed-database",
+            "command": "dotnet",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/src/app-server/dbseeder/"
+            },
+            "args": [
+                "run",
+                "--",
+                "\"Server=.\\DevSql;Database=distributed-app-dev;Trusted_Connection=True;\""
+            ]
+        }
+    ]
+}
