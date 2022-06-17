@@ -7,7 +7,7 @@
             "type": "process",
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/src/app-server/"
+                "cwd": "${workspaceFolder}/src/"
             },
             "args": [
                 "build",
@@ -16,12 +16,51 @@
             ]
         },
         {
+            "label": "seed-app-database",
+            "command": "dotnet",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/src/dbseeder/"
+            },
+            "args": [
+                "run",
+                "--",
+                "\"Server=.\\DevSql;Database=distributed-app-dev;Trusted_Connection=True;\""
+            ]
+        },
+        {
+            "label": "test-picsum",
+            "command": "dotnet",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/proto/picsum-api/"
+            },
+            "args": [
+                "run"
+            ]
+        },
+        {
+            "label": "update-app-database",
+            "command": "dotnet",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/src/App.Data/"
+            },
+            "args": [
+                "ef",
+                "database",
+                "update",
+                "-s",
+                "../App.Web"
+            ]
+        },
+        {
             "label": "watch-server",
             "command": "dotnet",
             "type": "shell",
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/src/app-server/App.Web/"
+                "cwd": "${workspaceFolder}/src/App.Web/"
             },
             "args": [
                 "watch",
@@ -30,19 +69,6 @@
             "presentation": {
                 "panel": "dedicated"
             }
-        },
-        {
-            "label": "seed-database",
-            "command": "dotnet",
-            "problemMatcher": "$msCompile",
-            "options": {
-                "cwd": "${workspaceFolder}/src/app-server/dbseeder/"
-            },
-            "args": [
-                "run",
-                "--",
-                "\"Server=.\\DevSql;Database=distributed-app-dev;Trusted_Connection=True;\""
-            ]
         }
     ]
 }
