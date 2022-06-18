@@ -4,7 +4,7 @@ using Platform.Core.Query;
 
 namespace App.Web.Controllers;
 
-public class EntityController<T> : ControllerBase where T : EntityBase
+public abstract class EntityController<T> : ControllerBase where T : EntityBase
 {
     protected readonly IService<T> svc;
 
