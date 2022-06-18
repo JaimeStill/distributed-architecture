@@ -1,7 +1,7 @@
 ﻿using App.Data;
 using Microsoft.EntityFrameworkCore;
 
-string? connection = args.Length > 0
+string connection = args.Length > 0
     ? args.First()
     : null;
 

@@ -3,6 +3,7 @@ using Platform.Contracts;
 namespace App.Models.Entities;
 public class Photo : EntityBase, IPhoto
 {
+    public int PicsumId { get; set; }
     public string Author { get; set; }
     public string Url { get; set; }
     public string DownloadUrl { get; set; }

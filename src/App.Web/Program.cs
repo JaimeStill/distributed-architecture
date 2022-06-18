@@ -1,4 +1,5 @@
 using App.Data;
+using App.Services;
 using App.Web.Hubs;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -42,6 +43,7 @@ builder
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 
