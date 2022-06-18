@@ -25,15 +25,26 @@
             "args": [
                 "run",
                 "--",
-                "\"Server=.\\DevSql;Database=distributed-app-dev;Trusted_Connection=True;\""
+                "Server=.\\DevSql;Database=distributed-app-dev;Trusted_Connection=True;"
             ]
         },
         {
-            "label": "test-picsum",
+            "label": "test-picsum-api",
             "command": "dotnet",
             "problemMatcher": "$msCompile",
             "options": {
                 "cwd": "${workspaceFolder}/proto/picsum-api/"
+            },
+            "args": [
+                "run"
+            ]
+        },
+        {
+            "label": "test-reactive-api",
+            "command": "dotnet",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/proto/reactive-api/"
             },
             "args": [
                 "run"

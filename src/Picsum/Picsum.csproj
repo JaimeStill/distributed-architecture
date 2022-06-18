@@ -9,4 +9,8 @@
     <PackageReference Include="System.Interactive.Async" Version="6.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Platform.Contracts\Platform.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>

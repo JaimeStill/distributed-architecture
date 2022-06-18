@@ -1,9 +1,10 @@
+using Platform.Contracts;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 
 namespace Picsum;
 
-public class PicsumPhoto
+public class PicsumPhoto : IPhoto
 {
     public int Id { get; set; }
     public string Author { get; set; }
