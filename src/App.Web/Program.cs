@@ -15,7 +15,6 @@ builder.Services.AddCors(options =>
         policy.AllowAnyOrigin();
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
-        policy.AllowCredentials();
         policy.WithExposedHeaders(
             "Content-Disposition",
             "Access-Control-Allow-Origin"
@@ -49,8 +48,9 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseHttpsRedirection();
 app.UseRouting();
+
+app.UseCors();
 
 app.UseEndpoints(endpoints =>
 {

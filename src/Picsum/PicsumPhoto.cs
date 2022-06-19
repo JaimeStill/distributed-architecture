@@ -18,7 +18,6 @@ public class PicsumPhoto : IPhoto
     public void Print()
     {
         Console.WriteLine($"Id: {Id}");
-        Console.WriteLine($"PicsumId: {PicsumId}");
         Console.WriteLine($"Author: {Author}");
         Console.WriteLine($"Url: {Url}");
         Console.WriteLine($"Download URL: {DownloadUrl}");

@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-app",
+            "label": "build",
             "command": "dotnet",
             "type": "process",
             "problemMatcher": "$msCompile",
@@ -66,12 +66,28 @@
             ]
         },
         {
-            "label": "watch-server",
+            "label": "watch-app-server",
             "command": "dotnet",
             "type": "shell",
             "problemMatcher": "$msCompile",
             "options": {
                 "cwd": "${workspaceFolder}/src/App.Web/"
+            },
+            "args": [
+                "watch",
+                "run"
+            ],
+            "presentation": {
+                "panel": "dedicated"
+            }
+        },
+        {
+            "label": "watch-picsum-server",
+            "command": "dotnet",
+            "type": "shell",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/src/Picsum.Api/"
             },
             "args": [
                 "watch",
