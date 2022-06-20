@@ -1,4 +1,4 @@
-namespace App.Services;
+namespace Platform.Core;
 public class ServiceException<T> : Exception
 {
     public ServiceException(string method, Exception ex)

@@ -1,6 +1,7 @@
 using App.Data;
 using App.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using Platform.Contracts;
 using Platform.Core.Query;
 
 namespace App.Services;
@@ -49,4 +50,49 @@ public class PhotoService : ServiceBase<Photo>
         else
             throw new InvalidDataException("The provided photo already exists");
     }
+
+    public async Task Seed(IStreamService<IPhoto> picsumSvc)
+    {
+        var observer = picsumSvc.GetObserver(
+            (IPhoto iphoto) =>
+            {
+                var photo = ToPhoto(iphoto);
+                if (ValidateSync(photo))
+                    set.Add(photo);
+            },
+            (Exception ex) => throw new Exception("Error seeding photos"),
+            () => db.SaveChanges()
+        );
+
+        await picsumSvc.Stream(observer);
+    }
+
+    public async Task SeedAsync(IStreamService<IPhoto> picsumSvc)
+    {
+        await foreach (IPhoto iphoto in picsumSvc.StreamAsync())
+        {
+            var photo = ToPhoto(iphoto);
+
+            if (await Validate(photo))
+                set.Add(photo);
+        }
+
+        await db.SaveChangesAsync();
+    }
+
+    bool ValidateSync(Photo photo) =>
+        !set.Any(p =>
+            p.Id != photo.Id
+            && p.PicsumId == photo.PicsumId
+        );
+
+    static Photo ToPhoto(IPhoto photo) => new()
+    {
+        PicsumId = photo.Id,
+        Author = photo.Author,
+        DownloadUrl = photo.DownloadUrl,
+        Url = photo.Url,
+        Height = photo.Height,
+        Width = photo.Width
+    };
 }

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicsumApi", "picsum-api\PicsumApi.csproj", "{1D7B0E39-F6EE-4350-B4EE-FCFFF1A52D2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHeaders", "test-headers\TestHeaders.csproj", "{41A3170A-39AC-418C-AC49-D84881EF0D94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactiveApi", "reactive-api\ReactiveApi.csproj", "{E3F4F991-7CE2-43E9-ADD1-FF47EC6B9FF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D7B0E39-F6EE-4350-B4EE-FCFFF1A52D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7B0E39-F6EE-4350-B4EE-FCFFF1A52D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7B0E39-F6EE-4350-B4EE-FCFFF1A52D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7B0E39-F6EE-4350-B4EE-FCFFF1A52D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A3170A-39AC-418C-AC49-D84881EF0D94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A3170A-39AC-418C-AC49-D84881EF0D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A3170A-39AC-418C-AC49-D84881EF0D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A3170A-39AC-418C-AC49-D84881EF0D94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3F4F991-7CE2-43E9-ADD1-FF47EC6B9FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3F4F991-7CE2-43E9-ADD1-FF47EC6B9FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3F4F991-7CE2-43E9-ADD1-FF47EC6B9FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3F4F991-7CE2-43E9-ADD1-FF47EC6B9FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,5 +1,15 @@
 ﻿using App.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Platform.Broker;
+using Platform.Contracts;
+
+var services = new ServiceCollection()
+    .RegisterPicsumService()
+    .BuildServiceProvider();
+
+IStreamService<IPhoto> picsumSvc =
+    services.GetService<IStreamService<IPhoto>>();
 
 string connection = args.Length > 0
     ? args.First()
@@ -18,7 +28,7 @@ try
         .UseSqlServer(connection);
 
     using var db = new AppDbContext(builder.Options);
-    await db.Initialize();
+    await db.Initialize(picsumSvc);
     Console.WriteLine("The database was successfully updated");
 }
 catch (Exception ex)

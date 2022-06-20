@@ -1,16 +1,14 @@
-using App.Data;
 using Microsoft.EntityFrameworkCore;
-using Platform.Contracts;
 using Platform.Core;
 using Platform.Core.Query;
 
-namespace App.Services;
+namespace Platform.Contracts;
 public class ServiceBase<T> : IService<T> where T : EntityBase
 {
-    protected AppDbContext db;
+    protected DbContext db;
     protected DbSet<T> set;
 
-    public ServiceBase(AppDbContext db)
+    public ServiceBase(DbContext db)
     {
         this.db = db;
         set = db.Set<T>();
