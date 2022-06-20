@@ -20,6 +20,7 @@
     <ProjectReference Include="..\App.Services\App.Services.csproj" />
     <ProjectReference Include="..\Platform.Contracts\Platform.Contracts.csproj" />
     <ProjectReference Include="..\Platform.Core\Platform.Core.csproj" />
+    <ProjectReference Include="..\Platform.Broker\Platform.Broker.csproj" />
   </ItemGroup>
 
 </Project>

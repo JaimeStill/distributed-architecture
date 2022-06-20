@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\App.Data\App.Data.csproj" />
+    <ProjectReference Include="..\Platform.Broker\Platform.Broker.csproj" />
   </ItemGroup>
 
 </Project>

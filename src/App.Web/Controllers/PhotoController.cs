@@ -1,6 +1,7 @@
 using App.Models.Entities;
 using App.Services;
 using Microsoft.AspNetCore.Mvc;
+using Platform.Contracts;
 using Platform.Core.Query;
 
 namespace App.Web.Controllers;
@@ -9,10 +10,13 @@ namespace App.Web.Controllers;
 public class PhotoController : EntityController<Photo>
 {
     readonly PhotoService photoSvc;
+    readonly IStreamService<IPhoto> picsumSvc;
 
-    public PhotoController(PhotoService svc) : base(svc)
+    public PhotoController(PhotoService svc, IStreamService<IPhoto> picsumSvc)
+        : base(svc)
     {
         photoSvc = svc;
+        this.picsumSvc = picsumSvc;
     }
 
     [HttpGet("[action]/{author}")]
@@ -21,6 +25,12 @@ public class PhotoController : EntityController<Photo>
         [FromRoute]string author,
         [FromQuery]QueryParams query
     ) => Ok(await photoSvc.QueryByAuthor(author, query));
+
+    [HttpGet("[action]")]
+    public async Task Seed() => await photoSvc.Seed(picsumSvc);
+
+    [HttpGet("[action]")]
+    public async Task SeedPhotosAsync() => await photoSvc.SeedAsync(picsumSvc);
 
     [HttpPost("[action]")]
     [ProducesResponseType(typeof(bool), 200)]

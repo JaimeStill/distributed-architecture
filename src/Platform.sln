@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picsum", "Picsum\Picsum.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picsum.Api", "Picsum.Api\Picsum.Api.csproj", "{C87F288F-F04E-4798-9AF8-FD008D92CAD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picsum.Services", "Picsum.Services\Picsum.Services.csproj", "{99A5161D-9CAF-4443-BB58-96CC3B6E5B9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Broker", "Platform.Broker\Platform.Broker.csproj", "{8D45125A-1355-4382-9F74-1ECC15E07C15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,5 +78,13 @@ Global
 		{C87F288F-F04E-4798-9AF8-FD008D92CAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C87F288F-F04E-4798-9AF8-FD008D92CAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C87F288F-F04E-4798-9AF8-FD008D92CAD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99A5161D-9CAF-4443-BB58-96CC3B6E5B9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99A5161D-9CAF-4443-BB58-96CC3B6E5B9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99A5161D-9CAF-4443-BB58-96CC3B6E5B9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99A5161D-9CAF-4443-BB58-96CC3B6E5B9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D45125A-1355-4382-9F74-1ECC15E07C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D45125A-1355-4382-9F74-1ECC15E07C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D45125A-1355-4382-9F74-1ECC15E07C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D45125A-1355-4382-9F74-1ECC15E07C15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

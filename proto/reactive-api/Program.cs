@@ -1,15 +1,13 @@
 ﻿using Picsum;
-using System.Reactive.Subjects;
+using Picsum.Services;
+using Platform.Contracts;
 
-Subject<PicsumPhoto> stream = new();
+PicsumStreamService picsumSvc = new();
 
-var sub = stream.Subscribe(
-    photo => photo.Print(),
-    error => throw new Exception("error", error),
+IObserver<IPhoto> observer = picsumSvc.GetObserver(    
+    (IPhoto photo) => Console.WriteLine($"{photo.Author} - {photo.Url}"),
+    (Exception error) => throw new Exception("error", error),
     () => Console.WriteLine("Stream is complete")
 );
 
-await foreach (PicsumPhoto photo in PicsumPhoto.Stream())
-    stream.OnNext(photo);
-
-stream.OnCompleted();
+await picsumSvc.Stream(observer);
