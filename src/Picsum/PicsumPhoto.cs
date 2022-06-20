@@ -1,4 +1,5 @@
 using Platform.Contracts;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 
@@ -25,27 +26,21 @@ public class PicsumPhoto : IPhoto
         Console.WriteLine($"Height: {Height}");
         Console.WriteLine();
     }
+    public static string PicsumUrl(int page) =>
+        $"https://picsum.photos/v2/list?limit=100&sort=id&page={page}";
 
     public static async IAsyncEnumerable<PicsumPhoto> Stream()
     {
-        var streams = Enumerable.Range(1, 10)
-            .Select(page => StreamPicsumPhotos(page))
-            .Merge();
+        using HttpClient http = new();
 
-        await foreach (PicsumPhoto photo in streams)
+        await foreach(PicsumPhoto photo in StreamPicsumPhotos(http, PicsumUrl(1)))
             yield return photo;
     }
 
-    static async IAsyncEnumerable<PicsumPhoto> StreamPicsumPhotos(int page)
+    static async IAsyncEnumerable<PicsumPhoto> StreamPicsumPhotos(HttpClient http, string url)
     {
-        static string PicsumUrl(int page) =>
-            $"https://picsum.photos/v2/list?limit=100&sort=id&page={page}";
-
-        using HttpClient http = new();
-
         HttpResponseMessage response = await http.GetAsync(
-            PicsumUrl(page),
-            HttpCompletionOption.ResponseHeadersRead
+            url
         ).ConfigureAwait(false);
 
         response.EnsureSuccessStatusCode();
@@ -55,7 +50,39 @@ public class PicsumPhoto : IPhoto
             .ReadFromJsonAsync<IAsyncEnumerable<PicsumPhoto>>()
             .ConfigureAwait(false);
 
+        var next = GetNextLink(response.Headers);
+
         await foreach (PicsumPhoto photo in photos)
             yield return photo;
+
+        if (!string.IsNullOrEmpty(next))
+            await foreach(PicsumPhoto photo in StreamPicsumPhotos(http, next))
+                yield return photo;
     }
+
+    static string GetNextLink(HttpResponseHeaders headers)
+    {
+        if (headers.TryGetValues("link", out IEnumerable<string> links))
+        {
+            var link = links.First();
+
+            if (link.Contains("rel=\"next\""))
+            {
+                return link.Contains(',')
+                    ? ParseNextLink(link.Split(',').Last())
+                    : ParseNextLink(link);
+            }
+            else
+                return string.Empty;
+        }
+        else
+            return string.Empty;
+    }
+
+    static string ParseNextLink(string link) =>
+        link.Split(';')
+            .First()
+            .Trim()
+            .TrimStart('<')
+            .TrimEnd('>');
 }

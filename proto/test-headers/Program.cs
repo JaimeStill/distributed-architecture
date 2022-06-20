@@ -2,29 +2,21 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
-using HttpClient http = new();
+var photos = Stream(PicsumPhoto.PicsumUrl(1));
 
-HttpResponseMessage response = await http.GetAsync(
-    PicsumPhoto.PicsumUrl(1)
-).ConfigureAwait(false);
-
-response.EnsureSuccessStatusCode();
-
-if (response.Headers.TryGetValues("link", out IEnumerable<string> links))
-    Console.WriteLine(links.First().Split(';').First().TrimStart('<').TrimEnd('>'));
-
-static void CheckHeaders(HttpResponseHeaders headers)
-{
-    if (headers.TryGetValues("link", out IEnumerable<string> links))
-    {
-        var link = links.First().Split(';').First().TrimStart('<').TrimEnd('>');
-    }
-}
+await foreach(PicsumPhoto photo in photos)
+    photo.Print();
 
 static async IAsyncEnumerable<PicsumPhoto> Stream(string url)
 {
     using HttpClient http = new();
 
+    await foreach (PicsumPhoto photo in StreamPhotos(http, url))
+        yield return photo;
+}
+
+static async IAsyncEnumerable<PicsumPhoto> StreamPhotos(HttpClient http, string url)
+{
     HttpResponseMessage response = await http.GetAsync(
         url
     ).ConfigureAwait(false);
@@ -36,6 +28,40 @@ static async IAsyncEnumerable<PicsumPhoto> Stream(string url)
         .ReadFromJsonAsync<IAsyncEnumerable<PicsumPhoto>>()
         .ConfigureAwait(false);
 
+    var next = GetNextLink(response.Headers);
+
     await foreach (PicsumPhoto photo in photos)
         yield return photo;
+
+    if (!string.IsNullOrEmpty(next))
+    {
+        await foreach(PicsumPhoto photo in StreamPhotos(http, next))
+            yield return photo;
+    }
 }
+
+static string GetNextLink(HttpResponseHeaders headers)
+{
+    if (headers.TryGetValues("link", out IEnumerable<string> links))
+    {
+        var link = links.First();
+
+        if (link.Contains("rel=\"next\""))
+        {
+            return link.Contains(',')
+                ? ParseNextLink(link.Split(',').Last())
+                : ParseNextLink(link);
+        }
+        else
+            return string.Empty;
+    }
+    else
+        return string.Empty;
+}
+
+static string ParseNextLink(string link) =>
+    link.Split(';')
+        .First()
+        .Trim()
+        .TrimStart('<')
+        .TrimEnd('>');
