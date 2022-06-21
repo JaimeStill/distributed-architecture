@@ -2,6 +2,22 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "picsum-watch",
+            "command": "npm run watch",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/apps/picsum/"
+            }
+        },
+        {
+            "label": "picsum-start",
+            "command": "npm run start",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/apps/picsum/"
+            }
+        },
+        {
             "label": "build",
             "command": "dotnet",
             "type": "process",
@@ -20,12 +36,23 @@
             "command": "dotnet",
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/src/dbseeder/"
+                "cwd": "${workspaceFolder}/src/App.Seeder/"
             },
             "args": [
                 "run",
                 "--",
                 "Server=.\\DevSql;Database=distributed-app-dev;Trusted_Connection=True;"
+            ]
+        },
+        {
+            "label": "test-headers",
+            "command": "dotnet",
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}/proto/test-headers/"
+            },
+            "args": [
+                "run"
             ]
         },
         {

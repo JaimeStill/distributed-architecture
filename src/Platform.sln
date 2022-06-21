@@ -7,15 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Data", "App.Data\App.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Models", "App.Models\App.Models.csproj", "{520A3B9A-CE96-4417-896B-4CDDEE532942}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Seeder", "App.Seeder\App.Seeder.csproj", "{4C8CCD5E-CA1A-44F7-AA09-639A76BAA867}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Services", "App.Services\App.Services.csproj", "{BE23F3EB-019F-427A-BC60-9D9A3119B2B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Web", "App.Web\App.Web.csproj", "{1CA0A1EF-0226-4AAD-8E40-3F27A5747555}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dbseeder", "dbseeder\dbseeder.csproj", "{4C8CCD5E-CA1A-44F7-AA09-639A76BAA867}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Contracts", "Platform.Contracts\Platform.Contracts.csproj", "{A7147E88-D7B5-45F0-9BFB-A594EADF4B18}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Core", "Platform.Core\Platform.Core.csproj", "{267DF5D9-AB57-41DA-9A16-FBC62571F028}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picsum", "Picsum\Picsum.csproj", "{E9B44CB3-2ED0-451A-83F7-FADE8E3BEE0A}"
 EndProject
@@ -24,6 +20,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picsum.Services", "Picsum.Services\Picsum.Services.csproj", "{99A5161D-9CAF-4443-BB58-96CC3B6E5B9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Broker", "Platform.Broker\Platform.Broker.csproj", "{8D45125A-1355-4382-9F74-1ECC15E07C15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Contracts", "Platform.Contracts\Platform.Contracts.csproj", "{A7147E88-D7B5-45F0-9BFB-A594EADF4B18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Core", "Platform.Core\Platform.Core.csproj", "{267DF5D9-AB57-41DA-9A16-FBC62571F028}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
