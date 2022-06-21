@@ -16,21 +16,22 @@
       <display-card *ngFor="let photo of query.data">
         <section fxLayout="column"
                  fxLayoutAlign="start center">
-          <a class="m4"
-             target="_blank"
-             [href]="photo.downloadUrl"
-             [matTooltip]="photo.downloadUrl">
-            <img class="m4"
-                 loading="lazy"
-                 [src]="photoApi.preview(photo)">
-          </a>
-          <a class="link"
-             target="_blank"
-             [href]="photo.url"
-             [matTooltip]="photo.url">
-            <p class="m4 mat-title">{{photo.author}}</p>
-          </a>
+          <img class="m4"
+               loading="lazy"
+               [src]="photoApi.preview(photo)">
+          <p class="m4 mat-title">{{photo.author}}</p>
           <p class="m4 mat-body-strong">{{photo.width}} x {{photo.height}}</p>
+          <section fxLayout="row"
+                   fxLayoutAlign="space-between center">
+            <a mat-stroked-button
+               class="m4"
+               target="_blank"
+               [href]="photo.downloadUrl">Download</a>
+            <a mat-stroked-button
+               class="m4"
+               target="_blank"
+               [href]="photo.url">Unsplash</a>
+          </section>
         </section>
       </display-card>
     </async-source-layout>
