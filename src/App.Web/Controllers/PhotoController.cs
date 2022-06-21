@@ -27,10 +27,10 @@ public class PhotoController : EntityController<Photo>
     ) => Ok(await photoSvc.QueryByAuthor(author, query));
 
     [HttpGet("[action]")]
-    public async Task Seed() => await photoSvc.Seed(picsumSvc);
+    public async Task SeedByObservable() => await photoSvc.SeedByObservable(picsumSvc);
 
     [HttpGet("[action]")]
-    public async Task SeedPhotosAsync() => await photoSvc.SeedAsync(picsumSvc);
+    public async Task SeedByStream() => await photoSvc.SeedByStream(picsumSvc);
 
     [HttpPost("[action]")]
     [ProducesResponseType(typeof(bool), 200)]

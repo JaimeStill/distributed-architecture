@@ -51,7 +51,7 @@ public class PhotoService : ServiceBase<Photo>
             throw new InvalidDataException("The provided photo already exists");
     }
 
-    public async Task Seed(IStreamService<IPhoto> picsumSvc)
+    public async Task SeedByObservable(IStreamService<IPhoto> picsumSvc)
     {
         var observer = picsumSvc.GetObserver(
             (IPhoto iphoto) =>
@@ -67,7 +67,7 @@ public class PhotoService : ServiceBase<Photo>
         await picsumSvc.Stream(observer);
     }
 
-    public async Task SeedAsync(IStreamService<IPhoto> picsumSvc)
+    public async Task SeedByStream(IStreamService<IPhoto> picsumSvc)
     {
         await foreach (IPhoto iphoto in picsumSvc.StreamAsync())
         {
