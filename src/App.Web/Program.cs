@@ -1,11 +1,11 @@
 using App.Data;
 using App.Services;
+using App.Web;
 using App.Web.Hubs;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using Platform.Broker;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,8 +43,8 @@ builder
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
-builder.Services.RegisterServices();
-builder.Services.RegisterPicsumService();
+builder.Services.AddAppServices();
+builder.Services.AddPlatformServices();
 
 var app = builder.Build();
 

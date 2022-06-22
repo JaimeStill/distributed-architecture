@@ -2,61 +2,31 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
-var photos = Stream(PicsumPhoto.PicsumUrl(1));
+int page = args.Length > 0
+    ? int.Parse(args.First())
+    : 2;
 
-await foreach(PicsumPhoto photo in photos)
-    photo.Print();
+using HttpClient http = new();
 
-static async IAsyncEnumerable<PicsumPhoto> Stream(string url)
+HttpResponseMessage response = await http.GetAsync(
+    PicsumPhoto.PicsumUrl(page)
+).ConfigureAwait(false);
+
+response.EnsureSuccessStatusCode();
+
+if (response.Headers.TryGetValues("link", out IEnumerable<string> links))
 {
-    using HttpClient http = new();
+    var link = links.First();
 
-    await foreach (PicsumPhoto photo in StreamPhotos(http, url))
-        yield return photo;
-}
+    Console.WriteLine($"Link header: {link}");
 
-static async IAsyncEnumerable<PicsumPhoto> StreamPhotos(HttpClient http, string url)
-{
-    HttpResponseMessage response = await http.GetAsync(
-        url
-    ).ConfigureAwait(false);
-
-    response.EnsureSuccessStatusCode();
-
-    var photos = await response
-        .Content
-        .ReadFromJsonAsync<IAsyncEnumerable<PicsumPhoto>>()
-        .ConfigureAwait(false);
-
-    var next = GetNextLink(response.Headers);
-
-    await foreach (PicsumPhoto photo in photos)
-        yield return photo;
-
-    if (!string.IsNullOrEmpty(next))
+    if (link.Contains("rel=\"next\""))
     {
-        await foreach(PicsumPhoto photo in StreamPhotos(http, next))
-            yield return photo;
-    }
-}
-
-static string GetNextLink(HttpResponseHeaders headers)
-{
-    if (headers.TryGetValues("link", out IEnumerable<string> links))
-    {
-        var link = links.First();
-
-        if (link.Contains("rel=\"next\""))
-        {
-            return link.Contains(',')
-                ? ParseNextLink(link.Split(',').Last())
-                : ParseNextLink(link);
-        }
+        if (link.Contains(','))
+            Console.WriteLine($"rel=\"next\": {ParseNextLink(link.Split(',').Last())}");
         else
-            return string.Empty;
+            Console.WriteLine($"rel=\"next\": {ParseNextLink(link)}");
     }
-    else
-        return string.Empty;
 }
 
 static string ParseNextLink(string link) =>

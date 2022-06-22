@@ -1,15 +1,8 @@
 ﻿using App.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Platform.Broker;
-using Platform.Contracts;
+using Picsum.Services;
 
-var services = new ServiceCollection()
-    .RegisterPicsumService()
-    .BuildServiceProvider();
-
-IStreamService<IPhoto> picsumSvc =
-    services.GetService<IStreamService<IPhoto>>();
+PicsumStreamService picsumSvc = new();
 
 string connection = args.Length > 0
     ? args.First()

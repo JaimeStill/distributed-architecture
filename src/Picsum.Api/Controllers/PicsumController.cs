@@ -5,11 +5,6 @@ namespace Picsum.Api.Controllers;
 public class PicsumController : Controller
 {
     [HttpGet("[action]")]
-    public async IAsyncEnumerable<PicsumPhoto> GetPhotos()
-    {
-        var stream = PicsumPhoto.Stream();
-
-        await foreach (var photo in stream)
-            yield return photo;
-    }
+    public IAsyncEnumerable<PicsumPhoto> GetPhotos() =>
+        PicsumPhoto.Stream();
 }

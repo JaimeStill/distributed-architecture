@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\App.Data\App.Data.csproj" />
-    <ProjectReference Include="..\Platform.Broker\Platform.Broker.csproj" />
+    <ProjectReference Include="..\Picsum.Services\Picsum.Services.csproj" />
   </ItemGroup>
 
 </Project>

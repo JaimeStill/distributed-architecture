@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picsum.Api", "Picsum.Api\Pi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Picsum.Services", "Picsum.Services\Picsum.Services.csproj", "{99A5161D-9CAF-4443-BB58-96CC3B6E5B9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Broker", "Platform.Broker\Platform.Broker.csproj", "{8D45125A-1355-4382-9F74-1ECC15E07C15}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Contracts", "Platform.Contracts\Platform.Contracts.csproj", "{A7147E88-D7B5-45F0-9BFB-A594EADF4B18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Core", "Platform.Core\Platform.Core.csproj", "{267DF5D9-AB57-41DA-9A16-FBC62571F028}"
